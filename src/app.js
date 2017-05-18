@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import HomeContainer from '../../component/home';
-import InputContainer from '../../component/input';
+import HomeContainer from './components/home';
+import InputContainer from './components/input';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducers from 'reducers';
+import reducers from './reducers';
 
 const middlewares = [ thunk ];
 

@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 class HomeView extends Component{
 	constructor(props){
 		super(props);
-		var { homeTitle, userVal } = this.props;
+		this.homeTitle = 'this is a home page';
 	}
 
 	render(){
+		var { userVal } = this.props;
 		return (
 			<div>
-				<h1>{ homeTitle ? homeTitle : 'It\'s a default title'}</h1>
+				<h1>{ this.homeTitle ? this.homeTitle : 'It\'s a default title'}</h1>
 				<div>{ userVal }</div>
 			</div>
 		)
@@ -21,7 +22,7 @@ class HomeView extends Component{
 //container component
 function mapStateToProps(state){
 	return {
-		homeTitle: state.homeData
+		userVal: state.userVal
 	}
 }
 

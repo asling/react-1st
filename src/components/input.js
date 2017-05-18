@@ -7,16 +7,16 @@ class InputView extends Component{
 		this.inputHandler = this.inputHandler.bind(this);
 	}
 
-	inputHandler(value){
+	inputHandler(e){
 		const { dispatch } = this.props;
-		dispatch(valChangeActionCreator(value));
+		dispatch(valChangeActionCreator(e.target.value));
 	}
 
 	render(){
 		const { userVal } = this.props;
 		return (
 			<div>
-				<input type="text" value={userVal} onChange={this.inputHandler} />
+				<input type="text" placeholder={userVal}  onChange={this.inputHandler} />
 			</div>
 		)
 	}
