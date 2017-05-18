@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 
+import InputContainer from './input';
 //ui component
 class HomeView extends Component{
 	constructor(props){
@@ -14,6 +15,7 @@ class HomeView extends Component{
 			<div>
 				<h1>{ this.homeTitle ? this.homeTitle : 'It\'s a default title'}</h1>
 				<div>{ userVal }</div>
+				<InputContainer />
 			</div>
 		)
 	}

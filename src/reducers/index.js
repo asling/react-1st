@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import { USER_INPUT_CHANGE } from '../actions/valChange.actions';
 
 export const userVal = (state = 'input whatever you want', action) => {
@@ -11,7 +12,8 @@ export const userVal = (state = 'input whatever you want', action) => {
 }
 
 const rootReducer = combineReducers({
-	userVal
+	userVal,
+	routerReducer
 });
 
 export default rootReducer;

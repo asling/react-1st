@@ -7,7 +7,7 @@ module.exports = {
 	entry: path.resolve(__dirname,"src/app.js"),
 	output:{
 		filename:'[name].[hash].bundle.js',
-		path: path.resolve(__dirname,"app"),
+		path: path.resolve(__dirname,"build"),
 		chunkFilename: '[name].[hash].chunk.js',
 	},
 	devtool:'source-map',
@@ -31,7 +31,7 @@ module.exports = {
 		]),
 	],
 	devServer: {
-	  contentBase: path.resolve(__dirname, "app"),
+	  contentBase: path.resolve(__dirname, "build"),
 	  compress: true,
 	}
 }
