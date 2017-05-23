@@ -4,7 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import LayoutContainer from './components/layout';
 import HomeContainer from './components/home';
 import InputContainer from './components/input';
-import listView from './components/list';
+import ListView from './components/list';
+import ListDetailContainer from './components/list.detail';
 
 
 export default class Routes extends Component{
@@ -13,7 +14,8 @@ export default class Routes extends Component{
 			<div>
 			<Route path="/" component={LayoutContainer} />
 			<Route path="/home" component={HomeContainer}/>
-			<Route path="/lists" component={listView}/>
+			<Route path="/list" component={ListView}/>
+			<Route path="/list/:detail" component={ListDetailContainer} />
 			</div>
 		)
 	}

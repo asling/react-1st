@@ -29,9 +29,5 @@ module.exports = {
 			from: path.resolve(__dirname,"index.html"),
 		}
 		]),
-	],
-	devServer: {
-	  contentBase: path.resolve(__dirname, "build"),
-	  compress: true,
-	}
+	]
 }
