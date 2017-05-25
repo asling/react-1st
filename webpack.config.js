@@ -16,8 +16,17 @@ module.exports = {
 			{
 				test: /\.js$/,
 			    loader: 'babel-loader?presets[]=es2015&presets[]=react',
-			    exclude: /node_modules/
+			    exclude: /node_modules/,
+			    query: {
+					cacheDirectory: true,
+					plugins: [["import", { libraryName: "antd", style: "css" }]]
+					}
 			},
+			{
+				test:/\.css$/,
+				loader:ExtractTextPlugin.extract(['css-loader'])
+			}
+
 		]
 	},
 	plugins:[
@@ -29,5 +38,6 @@ module.exports = {
 			from: path.resolve(__dirname,"index.html"),
 		}
 		]),
+		new ExtractTextPlugin("css/[name].[hash].css"),
 	]
 }

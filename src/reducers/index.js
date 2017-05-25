@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { USER_INPUT_CHANGE } from '../actions/valChange.actions';
+import { USER_INPUT_CHANGE, PICKER_DATE_CHANGE } from '../actions/valChange.actions';
 import { RECEIVE_LIST_DETAIL } from '../actions/getDatas.actions';
 
 export const userVal = (state = 'input whatever you want', action) => {
@@ -9,8 +9,16 @@ export const userVal = (state = 'input whatever you want', action) => {
 	}else{
 		return state;
 	}
-	
 }
+
+export const datePicked = (state = new Date(),action) => {
+	if(action.type === PICKER_DATE_CHANGE){
+		return action.date;
+	}else{
+		return state;
+	}
+}
+
 export const listDetail = (state = {
 	term: 'nop',
 	title: 'no title',
@@ -30,7 +38,8 @@ export const listDetail = (state = {
 const rootReducer = combineReducers({
 	userVal,
 	listDetail,
-	routerReducer
+	routerReducer,
+	datePicked
 });
 
 export default rootReducer;
