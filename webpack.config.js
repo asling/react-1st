@@ -3,12 +3,17 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
+var WebpackChunkHash = require("webpack-chunk-hash");
 module.exports = {
-	entry: path.resolve(__dirname,"src/app.js"),
+	entry: {
+		main:path.resolve(__dirname,"src/app.js"),
+		vendor:['react'],
+	},
 	output:{
-		filename:'[name].[hash].bundle.js',
+		filename:'[name].[chunkhash].js',
 		path: path.resolve(__dirname,"build"),
-		chunkFilename: '[name].[hash].chunk.js',
+		chunkFilename: "[name].[chunkhash].js"
 	},
 	devtool:'source-map',
 	module:{
@@ -19,8 +24,16 @@ module.exports = {
 			    exclude: /node_modules/,
 			    query: {
 					cacheDirectory: true,
-					plugins: [["import", { libraryName: "antd", style: "css" }]]
-					}
+					plugins: [
+						["import", { libraryName: "antd", style: "css" }],
+						["transform-runtime", {
+					      "helpers": false,
+					      "polyfill": false,
+					      "regenerator": true,
+					      "moduleName": "babel-runtime"
+					    }]
+					]
+				}
 			},
 			{
 				test:/\.css$/,
@@ -30,14 +43,30 @@ module.exports = {
 		]
 	},
 	plugins:[
-		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname,"index.html"),
-			inject: 'body',
-		}),
+		new webpack.HashedModuleIdsPlugin(),
+	    new WebpackChunkHash(),
 		new CopyWebpackPlugin([{
 			from: path.resolve(__dirname,"index.html"),
 		}
 		]),
 		new ExtractTextPlugin("css/[name].[hash].css"),
+		new webpack.optimize.CommonsChunkPlugin({
+			names: ['vendor','manifest'],
+			minChunks:Infinity,
+		}),
+		new ChunkManifestPlugin({
+	      filename: "chunk-manifest.json",
+	      manifestVariable: "webpackManifest",
+	      inlineManifest: true
+	    }),
+		new webpack.optimize.UglifyJsPlugin({
+		    compress: {
+		        warnings: false
+		    }
+		}),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname,"index.html"),
+			inject: 'body',
+		}),
 	]
 }
