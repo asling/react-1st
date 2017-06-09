@@ -7,7 +7,6 @@ class Layout extends Component{
 		super(props);
 	}
 
-
 	render(){
 		return (
 			<div>

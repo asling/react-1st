@@ -7,15 +7,16 @@ import InputContainer from './components/input';
 import ListView from './components/list';
 import ListDetailContainer from './components/list.detail';
 
+import auth from './auth';
 
 export default class Routes extends Component{
 	render(){
 		return (
 			<div>
-			<Route path="/" component={LayoutContainer} />
+			<Route path="/" component={LayoutContainer}/>
 			<Route path="/home" component={HomeContainer}/>
 			<Route path="/list" component={ListView}/>
-			<Route path="/list/:detail" component={ListDetailContainer} />
+			<Route path="/list/:detail" auth={auth} component={ListDetailContainer} />
 			</div>
 		)
 	}
