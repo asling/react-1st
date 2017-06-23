@@ -13,10 +13,10 @@ export default class Routes extends Component{
 	render(){
 		return (
 			<div>
-			<Route path="/" component={LayoutContainer}/>
+			<Route path="/" render={(props)=> <LayoutContainer auth={auth} {...props} />}/>
 			<Route path="/home" component={HomeContainer}/>
 			<Route path="/list" component={ListView}/>
-			<Route path="/list/:detail" auth={auth} component={ListDetailContainer} />
+			<Route path="/list/:detail" component={ListDetailContainer} />
 			</div>
 		)
 	}

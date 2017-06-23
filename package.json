@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server",
     "build": "rimraf build && webpack --bail --progress --profile",
     "startKoa": "node --harmony server/server.js",
-    "testKoa": "node --harmony server/server2.js"
+    "server": "node --harmony server/server2.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,8 @@
     "isomorphic-fetch": "^2.2.1",
     "kcors": "^2.2.1",
     "koa": "^2.2.0",
+    "koa-captcha": "^1.0.0",
+    "koa-generic-session": "^1.11.5",
     "koa-http-request": "^2.1.0",
     "koa-logger": "^3.0.0",
     "koa-router": "^7.1.1",

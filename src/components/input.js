@@ -36,13 +36,15 @@ class InputView extends Component{
 
 				<FormItem>
 					{getFieldDecorator('userName',{
-						rules:[{require:true, message: 'Please input your username!'}],
+						rules:[{
+				              type: 'email', message: 'The input is not valid E-mail!',
+				            },{required:true, message: 'Please input your E-mail\'s username!'}],
 						})(<Input prefix={<Icon type="user" style={{fontSize:13}} />} placeholder="Username" />)
 					}
 				</FormItem>
 				<FormItem>
 					{getFieldDecorator('password',{
-						rules: [{require:true, message: 'please input your password!'}],
+						rules: [{required:true, message: 'please input your password!'}],
 						})(
 							<Input prefix={<Icon type="lock" style={{fontSize:13}} />} type="password" placeholder="Password" />
 						)
